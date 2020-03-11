@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'rectangle.dart';
+import 'lines.dart';
 import 'bars.dart';
 import 'bubbles.dart';
 
@@ -13,42 +13,17 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Data viualization"),
+        title: Text("Proyecto 1"),
         centerTitle: true,
-      ),
-      drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              DrawerHeader(
-                child: Text("Drawer header"),
-                decoration: BoxDecoration(
-                    color: Colors.lightBlue
-                ),
-              ),
-              ListTile(
-                title: Text("Option 1"),
-                onTap: (){
-
-                },
-              ),
-              Divider(height: 10,),
-              ListTile(
-                title: Text("Option 2"),
-                onTap: (){
-
-                },
-              ),
-              Divider(height: 10,)
-            ],
-          )
+        backgroundColor: Colors.cyan,
       ),
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: createButtons(context, Colors.redAccent, [
-              ["Burbujas", SimpleScatterPlotChart()],
-              ["Barras", Bars()],
-              ["Rectangulo",ShapeScatterPlotChart()]
+            children: createButtons(context, Colors.pink, [
+              ["Gráfico por rango de edad", SimpleScatterPlotChart()],
+              ["Gráfico por provincias", Bars()],
+              ["Gráfico por género",Lines()]
             ])
         ),
       ),
@@ -61,7 +36,7 @@ class Home extends StatelessWidget {
       ret.add(FlatButton(
         color: color,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-        child: Text(button[0], textScaleFactor: 2, style: TextStyle(color: Colors.white),),
+        child: Text(button[0], textScaleFactor: 1.5, style: TextStyle(color: Colors.white),),
         onPressed: (){
           Navigator.push(context, MaterialPageRoute(builder: (context) => button[1]));
         },

@@ -71,18 +71,14 @@ class BarsState extends State<Bars>{
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bars"),
+        title: Text("Gráfico por rango de edad"),
         centerTitle: true,
       ),
       body:  Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Text(
-            'You have pushed the button this many times:',
-          ),
-          new Text(
-            '${clicksCount[actualClickData]}',
-            style: Theme.of(context).textTheme.display1,
+            'Costa Rica: Población total por condición y tipo de discapacidad, según provincia y sexo', textScaleFactor: 1.5
           ),
           Padding(
             padding: new EdgeInsets.all(32.0),
@@ -91,16 +87,6 @@ class BarsState extends State<Bars>{
               child: chart,
             ),
           ),
-          FlatButton(
-            child: Icon(Icons.add),
-            color: Colors.cyan,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-            onPressed: (){
-              setState(() {
-                ++clicksCount[actualClickData];
-              });
-            },
-          )
         ],
       ),
     );

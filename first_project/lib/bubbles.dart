@@ -94,18 +94,14 @@ class BubblesState extends State<SimpleScatterPlotChart>{
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bubbles"),
+        title: Text("Gráfico por provincias"),
         centerTitle: true,
       ),
       body:  Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           new Text(
-            'You have pushed the button this many times:',
-          ),
-          new Text(
-            '${clicksCount[actualClickData]}',
-            style: Theme.of(context).textTheme.display1,
+            'Costa Rica: Población total por condición y tipo de discapacidad, según grupos de edad', textScaleFactor: 1.5
           ),
           Padding(
             padding: new EdgeInsets.all(32.0),
@@ -114,16 +110,6 @@ class BubblesState extends State<SimpleScatterPlotChart>{
               child: chart,
             ),
           ),
-          FlatButton(
-            child: Icon(Icons.add),
-            color: Colors.cyan,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-            onPressed: (){
-              setState(() {
-                ++clicksCount[actualClickData];
-              });
-            },
-          )
         ],
       ),
     );
