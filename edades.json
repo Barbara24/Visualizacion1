@@ -1,0 +1,90 @@
+﻿[
+	{
+		"Rango de Edades": "Costa Rica",
+		"Población total": "4301712",
+		"Para ver aún con los anteojos o lentes puestos": "70709",
+		"Para hablar": "29413",
+		"Para caminar o subir gradas": "140380",
+		"Para utilizar brazos o manos": "48859",
+		"Del tipo intelectual": "35416",
+		"Del tipo mental": "26971",
+		"No tiene ninguna discapacidad": "3848863"
+	},
+	{
+		"Rango de Edades": "De 0 a 14 años",
+		"Población total": "1067830",
+		"Para ver aún con los anteojos o lentes puestos": "3339",
+		"Para hablar": "7331",
+		"Para caminar o subir gradas": "4749",
+		"Para utilizar brazos o manos": "2202",
+		"Del tipo intelectual": "9571",
+		"Del tipo mental": "2624",
+		"No tiene ninguna discapacidad": "1031897"
+	},
+	{
+		"Rango de Edades": "De 15 a 29 años",
+		"Población total": "1194080",
+		"Para ver aún con los anteojos o lentes puestos": "4983",
+		"Para hablar": "4810",
+		"Para caminar o subir gradas": "8350",
+		"Para utilizar brazos o manos": "3953",
+		"Del tipo intelectual": "11395",
+		"Del tipo mental": "4957",
+		"No tiene ninguna discapacidad": "1136145"
+	},
+	{
+		"Rango de Edades": "De 30 a 59 años",
+		"Población total": "1590466",
+		"Para ver aún con los anteojos o lentes puestos": "20643",
+		"Para hablar": "8359",
+		"Para caminar o subir gradas": "48919",
+		"Para utilizar brazos o manos": "19530",
+		"Del tipo intelectual": "10867",
+		"Del tipo mental": "11258",
+		"No tiene ninguna discapacidad": "1396039"
+	},
+	{
+		"Rango de Edades": "De 60 a 64 años",
+		"Población total": "137624",
+		"Para ver aún con los anteojos o lentes puestos": "5409",
+		"Para hablar": "1210",
+		"Para caminar o subir gradas": "13790",
+		"Para utilizar brazos o manos": "4766",
+		"Del tipo intelectual": "766",
+		"Del tipo mental": "1429",
+		"No tiene ninguna discapacidad": "100416"
+	},
+	{
+		"Rango de Edades": "De 65 a 74 años",
+		"Población total": "181582",
+		"Para ver aún con los anteojos o lentes puestos": "12858",
+		"Para hablar": "2469",
+		"Para caminar o subir gradas": "26710",
+		"Para utilizar brazos o manos": "8216",
+		"Del tipo intelectual": "1204",
+		"Del tipo mental": "2476",
+		"No tiene ninguna discapacidad": "120482"
+	},
+	{
+		"Rango de Edades": "De 75 a 89 años",
+		"Población total": "117955",
+		"Para ver aún con los anteojos o lentes puestos": "19258",
+		"Para hablar": "4126",
+		"Para caminar o subir gradas": "32221",
+		"Para utilizar brazos o manos": "8588",
+		"Del tipo intelectual": "1331",
+		"Del tipo mental": "3514",
+		"No tiene ninguna discapacidad": "60009"
+	},
+	{
+		"Rango de Edades": "De 90 años y más",
+		"Población total": "12175",
+		"Para ver aún con los anteojos o lentes puestos": "4219",
+		"Para hablar": "1108",
+		"Para caminar o subir gradas": "5641",
+		"Para utilizar brazos o manos": "1604",
+		"Del tipo intelectual": "282",
+		"Del tipo mental": "713",
+		"No tiene ninguna discapacidad": "3875"
+	}
+]
