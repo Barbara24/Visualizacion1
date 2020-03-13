@@ -3,8 +3,8 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
 class Edades {
-  final String rangoEdades;
-  final String poblacionTotal;
+  final int rangoEdades;
+  final int poblacionTotal;
   final String lentesPuestos;
   final String hablar;
   final String caminar;

@@ -1,8 +1,10 @@
 /// Scatter plot chart example
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:first_project/edades.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:charts_flutter/flutter.dart';
+import 'edades.dart';
 
 class SimpleScatterPlotChart extends StatefulWidget {
 
@@ -17,29 +19,24 @@ class BubblesState extends State<SimpleScatterPlotChart>{
   @override
   Widget build(BuildContext context) {
     var data = [
-      new LinearSales(0, 5, 3.0),
-      new LinearSales(10, 25, 5.0),
-      new LinearSales(12, 75, 4.0),
-      new LinearSales(13, 225, 5.0),
-      new LinearSales(16, 50, 4.0),
-      new LinearSales(24, 75, 3.0),
-      new LinearSales(25, 100, 3.0),
-      new LinearSales(34, 150, 5.0),
-      new LinearSales(37, 10, 4.5),
-      new LinearSales(45, 300, 8.0),
-      new LinearSales(52, 15, 4.0),
-      new LinearSales(56, 200, 7.0),
+      new Edades(14,1067830,"3339","7331","4749","2202","9571","2624","1031897",Colors.red),
+      new Edades(29,1067830,"4983","4810","8350","3953","11395","4957","1136145",Colors.red),
+      new Edades(59,1590466,"20643","8359","48919","19530","10867","11258","1396039",Colors.red),
+      new Edades(64,137624,"5409","1210","13790","4766","766","1429","100416",Colors.red),
+      new Edades(74,181582,"12858","2469","26710","8216","1204","2476","120482",Colors.red),
+      new Edades(89,117955,"19258","4126","32221","8588","1331","3514","60009",Colors.red),
+      new Edades(95,12175,"4219","1108","5641","1604","282","713","3875",Colors.red),
     ];
 
     final maxMeasure = 300;
 
     var series = [
-      new charts.Series<LinearSales, int>(
-        id: 'Sales',
+      new charts.Series<Edades, int>(
+        id: 'Edades',
         // Providing a color function is optional.
-        colorFn: (LinearSales sales, _) {
+        colorFn: (Edades edades, _) {
           // Bucket the measure column value into 3 distinct colors.
-          final bucket = sales.sales / maxMeasure;
+          final bucket = edades.poblacionTotal / maxMeasure;
 
 
           if (bucket < 1 / 3) {
@@ -50,10 +47,10 @@ class BubblesState extends State<SimpleScatterPlotChart>{
             return charts.MaterialPalette.green.shadeDefault;
           }
         },
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
+        domainFn: (Edades edades, _) => edades.rangoEdades,
+        measureFn: (Edades edades, _) => edades.poblacionTotal,
         // Providing a radius function is optional.
-        radiusPxFn: (LinearSales sales, _) => sales.radius,
+        radiusPxFn: (Edades edades, _) => 10,
         data: data,
       )
     ];
@@ -70,8 +67,8 @@ class BubblesState extends State<SimpleScatterPlotChart>{
                     context: context,
                     builder: (BuildContext context){
                       return AlertDialog(
-                        title: Text(data[actualClickData].year.toString()),
-                        content: Text("Clicks made: "+data[actualClickData].sales.toString()),
+                        title: Text(data[actualClickData].rangoEdades.toString()),
+                        content: Text("Clicks made: "+data[actualClickData].poblacionTotal.toString()),
                         actions: <Widget>[
                           FlatButton(
                             child: Text("Close"),
