@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Provincia {
   final String provincia;
   final String sexo;
-  final String poblacionTotal;
+  final int poblacionTotal;
   final String lentesPuestos;
   final String hablar;
   final String caminar;
