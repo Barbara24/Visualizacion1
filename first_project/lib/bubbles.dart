@@ -106,7 +106,7 @@ class BubblesState extends State<SimpleScatterPlotChart>{
           Padding(
             padding: new EdgeInsets.all(32.0),
             child: new SizedBox(
-              height: 200.0,
+              height: 600.0,
               child: chart,
             ),
           ),

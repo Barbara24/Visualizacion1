@@ -90,7 +90,7 @@ class BarsState extends State<Bars>{
           Padding(
             padding: new EdgeInsets.all(32.0),
             child: new SizedBox(
-              height: 200.0,
+              height: 300.0,
               child: chart,
             ),
           ),
