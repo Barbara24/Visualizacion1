@@ -19,55 +19,62 @@ class BarsState extends State<Bars>{
 
   @override
   Widget build(BuildContext context) {
-    var data = [
-      new ClicksPerYear('2016', clicksCount[0], Colors.red),
-      new ClicksPerYear('2017', clicksCount[1], Colors.yellow),
-      new ClicksPerYear('2018', clicksCount[2], Colors.green),
+    final desktopSalesData = [
+      new OrdinalSales('2014', 5),
+      new OrdinalSales('2015', 25),
+      new OrdinalSales('2016', 100),
+      new OrdinalSales('2017', 75),
+    ];
+
+    final tableSalesData = [
+      new OrdinalSales('2014', 25),
+      new OrdinalSales('2015', 50),
+      new OrdinalSales('2016', 10),
+      new OrdinalSales('2017', 20),
+    ];
+
+    final mobileSalesData = [
+      new OrdinalSales('2014', 10),
+      new OrdinalSales('2015', 15),
+      new OrdinalSales('2016', 50),
+      new OrdinalSales('2017', 45),
     ];
 
 
     var series = [
-      new charts.Series(
-        id: 'Clicks',
-        domainFn: (ClicksPerYear clickData, _) => clickData.year,
-        measureFn: (ClicksPerYear clickData, _) => clickData.clicks,
-        colorFn: (ClicksPerYear clickData, _) => clickData.color,
-        data: data,
+      new charts.Series<OrdinalSales, String>(
+        id: 'Desktop',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: desktopSalesData,
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        fillColorFn: (_, __) =>
+        charts.MaterialPalette.blue.shadeDefault.lighter,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: 'Tablet',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: tableSalesData,
+        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        fillColorFn: (_, __) =>
+        charts.MaterialPalette.red.shadeDefault.lighter,
+      ),
+      new charts.Series<OrdinalSales, String>(
+        id: 'Mobile',
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: mobileSalesData,
+        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        fillColorFn: (_, __) =>
+        charts.MaterialPalette.green.shadeDefault.lighter,
       ),
     ];
 
     var chart = new charts.BarChart(
       series,
       animate: true,
-      selectionModels: [
-        SelectionModelConfig(
-            changedListener: (SelectionModel model) {
-              if(model.hasDatumSelection) {
-                actualClickData = model.selectedDatum[0].index;
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context){
-                      return AlertDialog(
-                        title: Text(data[actualClickData].year),
-                        content: Text("Clicks made: "+data[actualClickData].clicks.toString()),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text("Close"),
-                            onPressed: (){
-                              Navigator.of(context).pop();
-                            },
-                          )
-                        ],
-                      );
-                    }
-                );
-                setState(() {
-
-                });
-              }
-            }
-        )
-      ],
+      barGroupingType: charts.BarGroupingType.grouped,
     );
     return Scaffold(
       appBar: AppBar(
@@ -91,4 +98,12 @@ class BarsState extends State<Bars>{
       ),
     );
   }
+}
+
+/// Sample ordinal data type.
+class OrdinalSales {
+  final String year;
+  final int sales;
+
+  OrdinalSales(this.year, this.sales);
 }
