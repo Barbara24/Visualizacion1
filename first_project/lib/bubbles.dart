@@ -19,37 +19,23 @@ class BubblesState extends State<SimpleScatterPlotChart>{
   @override
   Widget build(BuildContext context) {
     var data = [
-      new Edades(14,1067830,"3339","7331","4749","2202","9571","2624","1031897",Colors.red),
-      new Edades(29,1067830,"4983","4810","8350","3953","11395","4957","1136145",Colors.red),
-      new Edades(59,1590466,"20643","8359","48919","19530","10867","11258","1396039",Colors.red),
-      new Edades(64,137624,"5409","1210","13790","4766","766","1429","100416",Colors.red),
-      new Edades(74,181582,"12858","2469","26710","8216","1204","2476","120482",Colors.red),
-      new Edades(89,117955,"19258","4126","32221","8588","1331","3514","60009",Colors.red),
-      new Edades(95,12175,"4219","1108","5641","1604","282","713","3875",Colors.red),
+      new Edades(14,1067830,"14471","3339","7331","4749","2202","9571","2624","1031897",Colors.red,"0-14"),
+      new Edades(29,1067830,"30661","4983","4810","8350","3953","11395","4957","1136145",Colors.orange,"15-29"),
+      new Edades(59,1590466,"117509","20643","8359","48919","19530","10867","11258","1396039",Colors.yellow,"30-59"),
+      new Edades(64,137624,"22374","5409","1210","13790","4766","766","1429","100416",Colors.green,"60-64"),
+      new Edades(74,181582,"34089","12858","2469","26710","8216","1204","2476","120482",Colors.lightBlue,"65-74"),
+      new Edades(89,117955,"28368","19258","4126","32221","8588","1331","3514","60009",Colors.indigo,"75-89"),
+      new Edades(95,12175,"3992","4219","1108","5641","1604","282","713","3875",Colors.purple,"90-95"),
     ];
 
-    final maxMeasure = 300;
+    final maxMeasure = 4301712;
 
     var series = [
       new charts.Series<Edades, int>(
         id: 'Edades',
-        // Providing a color function is optional.
-        colorFn: (Edades edades, _) {
-          // Bucket the measure column value into 3 distinct colors.
-          final bucket = edades.poblacionTotal / maxMeasure;
-
-
-          if (bucket < 1 / 3) {
-            return charts.MaterialPalette.blue.shadeDefault;
-          } else if (bucket < 2 / 3) {
-            return charts.MaterialPalette.red.shadeDefault;
-          } else {
-            return charts.MaterialPalette.green.shadeDefault;
-          }
-        },
         domainFn: (Edades edades, _) => edades.rangoEdades,
         measureFn: (Edades edades, _) => edades.poblacionTotal,
-        // Providing a radius function is optional.
+        colorFn: (Edades edades,_)  => edades.color,
         radiusPxFn: (Edades edades, _) => 10,
         data: data,
       )
@@ -67,8 +53,13 @@ class BubblesState extends State<SimpleScatterPlotChart>{
                     context: context,
                     builder: (BuildContext context){
                       return AlertDialog(
-                        title: Text(data[actualClickData].rangoEdades.toString()),
-                        content: Text("Clicks made: "+data[actualClickData].poblacionTotal.toString()),
+                        title: Text(data[actualClickData].rango),
+                        content: Text("Población total: "+data[actualClickData].poblacionTotal.toString() + "\n" +
+                        "Para ver aún con los anteojos o lentes puestos: " + data[actualClickData].lentesPuestos + "\n" +
+                        "Para oir: " + data[actualClickData].oir + "\n" + "Para hablar: " + data[actualClickData].hablar + "\n" +
+                            "Para caminar y subit gradas: " + data[actualClickData].caminar + "\n" +
+                            "Para utilizar brazos o manos: " + data[actualClickData].brazos + "\n" + "Tipo intelectual: " + data[actualClickData].intelectual + "\n" +
+                            "Del tipo mental: " + data[actualClickData].mental + "\n"),
                         actions: <Widget>[
                           FlatButton(
                             child: Text("Close"),
@@ -103,7 +94,7 @@ class BubblesState extends State<SimpleScatterPlotChart>{
           Padding(
             padding: new EdgeInsets.all(32.0),
             child: new SizedBox(
-              height: 600.0,
+              height: 450.0,
               child: chart,
             ),
           ),
