@@ -13,7 +13,6 @@ class SimpleScatterPlotChart extends StatefulWidget {
 }
 
 class BubblesState extends State<SimpleScatterPlotChart>{
-  List<int> clicksCount = [12,24,10];
   int actualClickData = 0;
 
   @override

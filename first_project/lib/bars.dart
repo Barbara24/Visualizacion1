@@ -16,6 +16,8 @@ class Bars extends StatefulWidget{
 
 class BarsState extends State<Bars>{
 
+  int actualClickData = 0;
+
   @override
   Widget build(BuildContext context) {
     final provinciaData = [
@@ -102,6 +104,92 @@ class BarsState extends State<Bars>{
       vertical: false,
       barRendererDecorator: new charts.BarLabelDecorator<String>(),
       barGroupingType: charts.BarGroupingType.grouped,
+      selectionModels: [
+        SelectionModelConfig(
+            changedListener: (SelectionModel model) {
+              if(model.hasDatumSelection) {
+                actualClickData = model.selectedDatum[0].index;
+                var selectedDatum = model.selectedDatum;
+                String idS = selectedDatum.first.datum.sexo;
+                if(idS == "Total") {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                          title: Text(provinciaData[actualClickData].provincia),
+                          content: Text("Población total: "+provinciaData[actualClickData].poblacionTotal.toString() + "\n" +
+                              "Para ver aún con los anteojos o lentes puestos: " + provinciaData[actualClickData].lentesPuestos + "\n" +
+                              /*"Para oir: " + provinciaData[actualClickData].oir*/ "\n" + "Para hablar: " + provinciaData[actualClickData].hablar + "\n" +
+                              "Para caminar y subit gradas: " + provinciaData[actualClickData].caminar + "\n" +
+                              "Para utilizar brazos o manos: " + provinciaData[actualClickData].brazos + "\n" + "Tipo intelectual: " + provinciaData[actualClickData].intelectual + "\n" +
+                              "Del tipo mental: " + provinciaData[actualClickData].mental + "\n"),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text("Close"),
+                              onPressed: (){
+                                Navigator.of(context).pop();
+                              },
+                            )
+                          ],
+                        );
+                      }
+                  );
+                }
+                else if(idS == "Hombres"){
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                          title: Text(hombresData[actualClickData].provincia),
+                          content: Text("Población total: "+hombresData[actualClickData].poblacionTotal.toString() + "\n" +
+                              "Para ver aún con los anteojos o lentes puestos: " + hombresData[actualClickData].lentesPuestos + "\n" +
+                              /*"Para oir: " + hombresData[actualClickData].oir*/ "\n" + "Para hablar: " + hombresData[actualClickData].hablar + "\n" +
+                              "Para caminar y subit gradas: " + hombresData[actualClickData].caminar + "\n" +
+                              "Para utilizar brazos o manos: " + hombresData[actualClickData].brazos + "\n" + "Tipo intelectual: " + hombresData[actualClickData].intelectual + "\n" +
+                              "Del tipo mental: " + hombresData[actualClickData].mental + "\n"),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text("Close"),
+                              onPressed: (){
+                                Navigator.of(context).pop();
+                              },
+                            )
+                          ],
+                        );
+                      }
+                  );
+                }
+                else{
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                          title: Text(mujeresData[actualClickData].provincia),
+                          content: Text("Población total: "+mujeresData[actualClickData].poblacionTotal.toString() + "\n" +
+                              "Para ver aún con los anteojos o lentes puestos: " + mujeresData[actualClickData].lentesPuestos + "\n" +
+                              /*"Para oir: " + mujeresData[actualClickData].oir*/ "\n" + "Para hablar: " + mujeresData[actualClickData].hablar + "\n" +
+                              "Para caminar y subit gradas: " + mujeresData[actualClickData].caminar + "\n" +
+                              "Para utilizar brazos o manos: " + mujeresData[actualClickData].brazos + "\n" + "Tipo intelectual: " + mujeresData[actualClickData].intelectual + "\n" +
+                              "Del tipo mental: " + mujeresData[actualClickData].mental + "\n"),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text("Close"),
+                              onPressed: (){
+                                Navigator.of(context).pop();
+                              },
+                            )
+                          ],
+                        );
+                      }
+                  );
+                }
+                setState(() {
+
+                });
+              }
+            }
+        )
+      ],
       );
       return Scaffold(
         appBar: AppBar(
