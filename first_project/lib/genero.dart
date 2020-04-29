@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class Genero {
   final String sexo;
-  final String rangoEdades;
-  final String poblacionTotal;
+  final int rangoEdades;
+  final int poblacionTotal;
   final String lentesPuestos;
   final String hablar;
   final String caminar;
