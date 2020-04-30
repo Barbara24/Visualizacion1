@@ -14,10 +14,11 @@ class Genero {
   final String mental;
   final String ninguna;
   final charts.Color color;
+  final String rango;
 
 
   Genero(this.sexo,this.rangoEdades, this.poblacionTotal, this.lentesPuestos, this.hablar, this.caminar, this.brazos, this.intelectual,
-      this.mental,this.ninguna,Color color)
+      this.mental,this.ninguna,Color color, this.rango)
       : this.color = new charts.Color(
       r: color.red, g: color.green, b: color.blue, a: color.alpha);
 }

@@ -27,8 +27,6 @@ class BubblesState extends State<SimpleScatterPlotChart>{
       new Edades(95,12175,"3992","4219","1108","5641","1604","282","713","3875",Colors.purple,"90-95"),
     ];
 
-    final maxMeasure = 4301712;
-
     var series = [
       new charts.Series<Edades, int>(
         id: 'Edades',
@@ -40,9 +38,54 @@ class BubblesState extends State<SimpleScatterPlotChart>{
       )
     ];
 
+    final staticTicks = <charts.TickSpec<int>>[
+      new charts.TickSpec(
+          14,
+          label: "0-14",
+          style: new charts.TextStyleSpec(
+              color: Color.black)),
+      new charts.TickSpec(
+          29,
+          label: "15-29",
+          style: new charts.TextStyleSpec(
+              color: Color.black)),
+      new charts.TickSpec(
+          59,
+          label: "30-59",
+          style: new charts.TextStyleSpec(
+              color: Color.black)),
+      new charts.TickSpec(
+          64,
+          label: "60-64",
+          style: new charts.TextStyleSpec(
+              color: Color.black)),
+      new charts.TickSpec(
+          74,
+          label: "65-74",
+          style: new charts.TextStyleSpec(
+              color: Color.black)),
+      new charts.TickSpec(
+          89,
+          label: "75-89",
+          style: new charts.TextStyleSpec(
+              color: Color.black)),
+      new charts.TickSpec(
+          95,
+          label: "90-95",
+          style: new charts.TextStyleSpec(
+              color: Color.black)),
+    ];
+
     var chart = new charts.ScatterPlotChart(
       series,
       animate: true,
+      domainAxis: new charts.NumericAxisSpec(
+            tickProviderSpec: new charts.StaticNumericTickProviderSpec(staticTicks),
+          renderSpec: new charts.SmallTickRendererSpec(
+            labelStyle: new charts.TextStyleSpec(
+                fontSize: 6,
+                color: charts.MaterialPalette.black))
+      ),
       selectionModels: [
         SelectionModelConfig(
             changedListener: (SelectionModel model) {
@@ -56,7 +99,7 @@ class BubblesState extends State<SimpleScatterPlotChart>{
                         content: Text("Población total: "+data[actualClickData].poblacionTotal.toString() + "\n" +
                         "Para ver aún con los anteojos o lentes puestos: " + data[actualClickData].lentesPuestos + "\n" +
                         "Para oir: " + data[actualClickData].oir + "\n" + "Para hablar: " + data[actualClickData].hablar + "\n" +
-                            "Para caminar y subit gradas: " + data[actualClickData].caminar + "\n" +
+                            "Para caminar y subir gradas: " + data[actualClickData].caminar + "\n" +
                             "Para utilizar brazos o manos: " + data[actualClickData].brazos + "\n" + "Tipo intelectual: " + data[actualClickData].intelectual + "\n" +
                             "Del tipo mental: " + data[actualClickData].mental + "\n"),
                         actions: <Widget>[
@@ -101,13 +144,4 @@ class BubblesState extends State<SimpleScatterPlotChart>{
       ),
     );
   }
-}
-
-/// Sample linear data type.
-class LinearSales {
-  final int year;
-  final int sales;
-  final double radius;
-
-  LinearSales(this.year, this.sales, this.radius);
 }
