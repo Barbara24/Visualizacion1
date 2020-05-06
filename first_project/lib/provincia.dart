@@ -7,6 +7,7 @@ class Provincia {
   final String sexo;
   final int poblacionTotal;
   final String lentesPuestos;
+  final String oir;
   final String hablar;
   final String caminar;
   final String brazos;
@@ -16,7 +17,7 @@ class Provincia {
   final charts.Color color;
 
 
-  Provincia(this.provincia,this.sexo, this.poblacionTotal, this.lentesPuestos, this.hablar, this.caminar, this.brazos, this.intelectual,
+  Provincia(this.provincia,this.sexo, this.poblacionTotal, this.lentesPuestos,this.oir, this.hablar, this.caminar, this.brazos, this.intelectual,
       this.mental,this.ninguna,Color color)
       : this.color = new charts.Color(
       r: color.red, g: color.green, b: color.blue, a: color.alpha);
