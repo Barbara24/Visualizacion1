@@ -126,6 +126,7 @@ class BubblesState extends State<SimpleScatterPlotChart>{
       appBar: AppBar(
         title: Text("Gráfico por provincias"),
         centerTitle: true,
+        backgroundColor: Colors.cyan,
       ),
       body:  Column(
         mainAxisAlignment: MainAxisAlignment.center,

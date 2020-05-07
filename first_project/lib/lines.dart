@@ -3,11 +3,8 @@ import 'package:first_project/genero.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'dart:math';
-import 'package:charts_flutter/src/text_element.dart';
-import 'package:charts_flutter/src/text_style.dart' as style;
-
-import 'data.dart';
+import 'package:flutter/rendering.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 
 class Lines extends StatefulWidget{
@@ -23,6 +20,7 @@ class LinesState extends State<Lines>{
 
   @override
   Widget build(BuildContext context) {
+
     final hombres = [
       new Genero("Hombre",14, 542618,"1844","4748","2523","1228","5686","1713","522484",Colors.blue,"0-14"),
       new Genero("Hombre",29, 589260,"2705","2870","4800","2465","6587","2948","559775",Colors.blue,"15-29"),
@@ -43,87 +41,48 @@ class LinesState extends State<Lines>{
       new Genero("Mujer",100, 7382,"2356","703","3621","1069","181","495","2348",Colors.red,"90-95"),
     ];
 
+    List<LineSeries<Genero, String>> getDefaultLineSeries(bool isTileView) {
+      return <LineSeries<Genero, String>>[
+        LineSeries<Genero, String>(
+            color: Colors.blue,
+            animationDuration: 2500,
+            enableTooltip: true,
+            dataSource: hombres,
+            xValueMapper: (Genero genero, _) => genero.rango,
+            yValueMapper: (Genero genero, _) => genero.poblacionTotal,
+            width: 2,
+            name: 'Hombres',
+            markerSettings: MarkerSettings(isVisible: true)),
+        LineSeries<Genero, String>(
+            color: Colors.red,
+            animationDuration: 2500,
+            enableTooltip: true,
+            dataSource: mujeres,
+            width: 2,
+            name: 'Mujeres',
+            xValueMapper: (Genero genero, _) => genero.rango,
+            yValueMapper: (Genero genero, _) => genero.poblacionTotal,
+            markerSettings: MarkerSettings(isVisible: true))
+      ];
+    }
 
-    var series = [
-      new charts.Series<Genero, int>(
-        id: 'Hombres',
-        colorFn: (Genero genero, __) => genero.color,
-        domainFn: (Genero genero, _) => genero.rangoEdades,
-        measureFn: (Genero genero, _) => genero.poblacionTotal,
-        data: hombres,
-      ),
-      new charts.Series<Genero, int>(
-        id: 'Mujeres',
-        colorFn: (Genero genero, __) => genero.color,
-        domainFn: (Genero genero, _) => genero.rangoEdades,
-        measureFn: (Genero genero, _) => genero.poblacionTotal,
-        data: mujeres,
-      ),
-    ];
-
-    final staticTicks = <charts.TickSpec<int>>[
-      new charts.TickSpec(
-          14,
-          label: "0-14",
-          style: new charts.TextStyleSpec(
-              color: Color.black)),
-      new charts.TickSpec(
-          29,
-          label: "15-29",
-          style: new charts.TextStyleSpec(
-              color: Color.black)),
-      new charts.TickSpec(
-          59,
-          label: "30-59",
-          style: new charts.TextStyleSpec(
-              color: Color.black)),
-      new charts.TickSpec(
-          64,
-          label: "60-64",
-          style: new charts.TextStyleSpec(
-              color: Color.black)),
-      new charts.TickSpec(
-          74,
-          label: "65-74",
-          style: new charts.TextStyleSpec(
-              color: Color.black)),
-      new charts.TickSpec(
-          89,
-          label: "75-89",
-          style: new charts.TextStyleSpec(
-              color: Color.black)),
-      new charts.TickSpec(
-          95,
-          label: "90-95",
-          style: new charts.TextStyleSpec(
-              color: Color.black)),
-    ];
-
-    var chart = new charts.LineChart(
-      series,
-      animate: true,
-        domainAxis: new charts.NumericAxisSpec(
-            tickProviderSpec: new charts.StaticNumericTickProviderSpec(staticTicks),
-            renderSpec: new charts.SmallTickRendererSpec(
-                labelStyle: new charts.TextStyleSpec(
-                    fontSize: 6,
-                    color: charts.MaterialPalette.black))
-        ),
-        defaultRenderer: new charts.LineRendererConfig(includePoints: true),
-      behaviors: [new charts.LinePointHighlighter(
-          showHorizontalFollowLine:
-          charts.LinePointHighlighterFollowLineType.nearest,
-          showVerticalFollowLine:
-          charts.LinePointHighlighterFollowLineType.nearest),
-          new charts.SelectNearest(eventTrigger: charts.SelectionTrigger.tapAndDrag),
-      ],
-
+    var chart = new SfCartesianChart(
+        series: getDefaultLineSeries(true),
+        primaryXAxis: CategoryAxis(),
+        legend: Legend(isVisible: true),
+        trackballBehavior: TrackballBehavior(
+            enable: true,
+            tooltipDisplayMode: TrackballDisplayMode.nearestPoint,
+            activationMode: ActivationMode.singleTap,
+            tooltipAlignment: ChartAlignment.center,
+        )
     );
 
     return Scaffold(
       appBar: AppBar(
         title: Text("Gráfico por género"),
         centerTitle: true,
+        backgroundColor: Colors.cyan,
       ),
       body:  Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -134,7 +93,7 @@ class LinesState extends State<Lines>{
           Padding(
             padding: new EdgeInsets.all(32.0),
             child: new SizedBox(
-              height: 400.0,
+              height: 410.0,
               child: chart,
             ),
           ),
